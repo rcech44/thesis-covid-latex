@@ -1,0 +1,27 @@
+\chapter{Závěr}
+
+Hlavním cílem práce bylo zvizualizovat data onemocnění covid-19 v~rámci okresů České republiky. Po zkoumání různých možností se rozhodlo, že se bude jednat o~webovou aplikaci, ke které bude uživatel přistupovat pomocí webového prohlížeče. Na úvod bylo popsáno onemocnění covid-19 společně s~dostupnými daty a~poté byly detailně popsány veškeré důležité části aplikace. Při vyvíjení aplikace bylo získáno mnoho zajímavých zkušeností a~poznatků s~obecným fungováním webových aplikací a~frameworkem Django, jež byl pro realizaci práce použit.
+
+Cíl práce byl splněn a~aplikace byla úspěšně vytvořena. Výsledkem je plnohodnotná webová aplikace, která poskytuje uživateli širokou škálu dat, jež lze zvizualizovat na interaktivní mapě ČR rozdělené na okresy. Pro konkrétní potřeby uživatele jsou dostupná různá přizpůsobení mapy i~škálování dat. V~porovnání s~existujícími aplikacemi je nově vytvořená aplikace jediná, která dokáže plně vizualizovat covidová data formou interaktivní mapy ČR rozdělené na okresy a~je schopná si vizualizaci přizpůsobit ať už z~hlediska dat, času, nebo vzhledu. Navíc obsahuje dodatečné funkce jako např. obraz o~obraze.
+
+Stále existují cesty, jak aplikaci obohatit. Užitečným doplňkem by bylo přizpůsobení stahovaných dat nebo rozšíření o~nové rozdělení mapy na kraje. V~budoucnu by bylo vhodné aplikaci připravit na nasazení na server. Předpokládá se, že se bude aplikace chovat odlišně, protože by běžela 24/7 na serveru a~občas by mohla být pod tlakem více připojených uživatelů. 
+
+\section{Co se zdařilo a~nezdařilo}
+
+\subsubsection*{Vizualizace covidových dat v~okresech}
+
+V~této aplikaci se kladl velký důraz na samotnou vizualizaci dat. Výsledná vizualizace se velice zdařila a~poskytuje uživateli svobodu přizpůsobení jeho vlastnímu použití. Jádrem celé vizualizace je mapa, která je plně interaktivní a~funguje i~na dotykových obrazovkách. Důležitou součástí je i~animace, kde dochází k~prolínání dní za sebou ve zvoleném časovém okně. Vzhledem k~možnostem vizualizace a~jejímu přizpůsobení považuji tento způsob jako velice zdařilý.
+
+\subsubsection*{Vzhled aplikace na straně klienta}
+
+Je důležité příchozího uživatele oslovit a~ne jej odradit od používání aplikace. Proto je využito moderní uživatelské rozhraní, které je inspirované Material Designem. Samotné rozhraní obsahuje přívětivé animace, moderní minimalistický design a~měnící se barevné schéma vzhledem k~vybranému datasetu. Rozhraní také poskytuje tmavý režim pro komfort uživatele a~schopnost skrýt určitá okna. Podle zkušeností používání této aplikace lze říci, že prostředí je přehledné a~nelze se v~něm jednoduše ztratit.
+
+\subsubsection*{Dostupná data}
+
+Veškerá užitá data pochází z~MZČR a~ČSÚ. API od Ministerstva zdravotnictví poskytuje širokou škálu dat, kterou lze využít k~různým analýzám a~vizualizacím. Problém ale nastává v~tom, že většina těchto dat není použitelná pro tuto aplikaci. Značná část těchto dat se vztahuje buď na celou Českou republiku nebo kraje, pouze malá část dat obsahuje informace o~okresech. S~některými využitými daty ale nastal problém a to u infekcí, kde nelze z~využitého datasetu \emph{obce} vyčíst počet aktivních případů. Nové případy v~okrese se počítají součtem nových případů v~obcích v~daném okrese a~celkový sečtený počet pro okres odpovídá správnému výsledku. Stejný způsob ale nelze použít pro aktivní případy neboť výsledek často bývá nesmyslně mnohonásobně větší, než jaký má reálně být.
+
+\subsubsection*{Aktuálnost dat}
+
+Data, která poskytuje API Onemocnění aktuálně, jsou denně v~ranních hodinách aktualizována. Nejen, že přibyde nový den, ale velice často jsou aktualizovány i~předchozí dny, někdy i~týdny. Aplikace proto stahuje data vždy s~týdenním odstupem, aby se zajistila co největší aktuálnost dat. Poté již data neaktualizuje. Se současným API by bylo velice náročné data každodenně kontrolovat, zda došlo k~jejich změně. API je totiž limitované na 1000 požadavků na hodinu a~kontrolovat celou databázi by bylo výkonnostně náročné. Proto mohou být celkové výsledky vizualizace lehce nepřesné.
+
+\endinput

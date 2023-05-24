@@ -1,0 +1,299 @@
+% Nejprve uvedeme tridu dokumentu s volbami
+\documentclass[czech,bachelor]{diploma}
+% Dalsi doplnujici baliky maker
+\usepackage[autostyle=true,czech=quotes]{csquotes} % korektni sazba uvozovek, podpora pro balik biblatex
+\usepackage[backend=biber, style=iso-numeric, alldates=iso, defernumbers=true]{biblatex} % bibliografie
+\usepackage{dcolumn} % sloupce tabulky s ciselnymi hodnotami
+\usepackage{subfig} % makra pro "podobrazky" a "podtabulky"
+\usepackage[cpp]{diplomalst}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{color}
+
+\definecolor{lightgray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{darkgray}{rgb}{0.4, 0.4, 0.4}
+%\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{editorOcher}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
+\definecolor{editorGreen}{rgb}{0, 0.5, 0} % #007C00 -> rgb(0, 124, 0)
+\definecolor{orange}{rgb}{1,0.45,0.13}		
+\definecolor{olive}{rgb}{0.17,0.59,0.20}
+\definecolor{brown}{rgb}{0.69,0.31,0.31}
+\definecolor{purple}{rgb}{0.38,0.18,0.81}
+\definecolor{lightblue}{rgb}{0.1,0.57,0.7}
+\definecolor{lightred}{rgb}{1,0.4,0.5}
+\usepackage{upquote}
+\usepackage{listings}
+% CSS
+\lstdefinelanguage{CSS}{
+  keywords={color, font-family:, font-size:,background-image:,margin,padding,font,weight,display,position,top,left,right,bottom,list,style,border,size,white,space,min,width, transition:, transform:, transition-property, transition-duration, transition-timing-function},	
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  alsoletter={:},
+  alsodigit={-}
+}
+
+% JavaScript
+\lstdefinelanguage{JavaScript}{
+  morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  morecomment=[s]{/*}{*/},
+  morecomment=[l]//,
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinelanguage{HTML5}{
+  language=html,
+  sensitive=true,	
+  alsoletter={=-},	
+  morecomment=[s]{<!-}{-->},
+  tag=[s],
+  otherkeywords={
+  % General
+  >,
+  % Standard tags
+	<!DOCTYPE,
+  </html, <html, <head, <title, </title, <style, </style, <link, </head, <meta, />,
+	% body
+	</body, <body,
+	% Divs
+	</div, <div, </div>, 
+	% Paragraphs
+	</p, <p, </p>,
+	% scripts
+	</script, <script,
+    <h1, </h1,
+  % More tags...
+  <canvas, /canvas>, <svg, <rect, <animateTransform, </rect>, </svg>, <video, <source, <iframe, </iframe>, </video>, <image, </image>, <header, </header, <article, </article, <img
+  },
+  ndkeywords={
+  % General
+  =,
+  % HTML attributes
+  charset=, src=, id=, width=, height=, style=, type=, rel=, href=, alt=,
+  % SVG attributes
+  fill=, attributeName=, begin=, dur=, from=, to=, poster=, controls=, x=, y=, repeatCount=, xlink:href=,
+  % properties
+  margin:, font-family:, color:, text-decoration:, filter:, background:, padding:, background-image:, border:, top:, left:, position:, width:, height:, margin-top:, margin-bottom:, font-size:, line-height:,
+	% CSS3 properties
+  transform:, -moz-transform:, -webkit-transform:,
+  animation:, -webkit-animation:,
+  transition:,  transition-duration:, transition-property:, transition-timing-function:,
+  }
+}
+
+\lstdefinestyle{enhancedSQL}{
+  language=SQL,
+  otherkeywords={ TEXT, AUTOINCREMENT
+  }
+}
+
+\lstdefinestyle{htmlcssjs} {%
+  % General design
+  % Code design
+  identifierstyle=\color{black},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{editorGreen}\bfseries,
+  stringstyle=\color{editorOcher}\ttfamily,
+  commentstyle=\color{brown}\ttfamily,
+  % Code
+  language=HTML5,
+  alsolanguage=JavaScript,
+  alsodigit={.:;},	
+  alsoletter={<>=-},
+  tabsize=2,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  extendedchars=true,
+  breaklines=true,
+  % German umlauts
+  literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
+%
+\lstdefinestyle{py} {%
+language=python,
+literate=%
+*{0}{{{\color{lightred}0}}}1
+{1}{{{\color{lightred}1}}}1
+{2}{{{\color{lightred}2}}}1
+{3}{{{\color{lightred}3}}}1
+{4}{{{\color{lightred}4}}}1
+{5}{{{\color{lightred}5}}}1
+{6}{{{\color{lightred}6}}}1
+{7}{{{\color{lightred}7}}}1
+{8}{{{\color{lightred}8}}}1
+{9}{{{\color{lightred}9}}}1,
+basicstyle=\footnotesize\ttfamily, % Standardschrift
+numbers=left,               % Ort der Zeilennummern
+%numberstyle=\tiny,          % Stil der Zeilennummern
+%stepnumber=2,               % Abstand zwischen den Zeilennummern
+numbersep=5pt,              % Abstand der Nummern zum Text
+tabsize=4,                  % Groesse von Tabs
+extendedchars=true,         %
+breaklines=true,            % Zeilen werden Umgebrochen
+keywordstyle=\color{blue}\bfseries,
+frame=b,
+commentstyle=\color{brown}\itshape,
+stringstyle=\color{editorOcher}\ttfamily, % Farbe der String
+showspaces=false,           % Leerzeichen anzeigen ?
+showtabs=false,             % Tabs anzeigen ?
+xleftmargin=17pt,
+framexleftmargin=17pt,
+framexrightmargin=5pt,
+framexbottommargin=4pt,
+%backgroundcolor=\color{lightgray},
+showstringspaces=false,      % Leerzeichen in Strings anzeigen ?
+}%
+
+\definecolor{bashkeyword}{rgb}{0,0,0.5}
+\definecolor{bashstring}{rgb}{0,0.5,0}
+\definecolor{bashcomment}{rgb}{0.5,0.5,0.5}
+\lstdefinestyle{bash}{
+   language=Bash,
+   showspaces=false,
+   showstringspaces=false,
+   basicstyle=\ttfamily,
+   columns=flexible,
+   stringstyle=\color{bashstring},
+   keywordstyle=\color{bashkeyword}\ttfamily\textbf,
+   commentstyle=\color{bashcomment}\ttfamily\textit
+ }
+
+\renewcommand\lstlistingname{Výpis}
+\renewcommand{\lstlistlistingname}{Seznam výpisů zdrojového kódu}
+% Zadame pozadovane vstupy pro generovani titulnich stran.
+\ThesisAuthor{Radomír Čech}
+
+\ThesisSupervisor{RNDr. Eliška Ochodková, Ph.D.}
+
+\CzechThesisTitle{Vizualizace Covidových dat}
+
+\EnglishThesisTitle{Visualization of Covid Data}
+
+\SubmissionYear{2023}
+
+\ThesisAssignmentFileName{ThesisSpecification.pdf}
+
+% Pokud nechceme nikomu dekovat makro zapoznamkujeme.
+\Acknowledgement{
+
+Rád bych poděkoval vedoucí své práce RNDr. Elišce Ochodkové, Ph.D. za odborné vedení práce formou konzultací, za velmi cenné připomínky k práci a~za čas, který mi věnovala.
+
+}
+
+\CzechAbstract{
+    
+Bakalářská práce se zabývá vývojem aplikace pro vizualizaci dat o~onemocnění COVID-19 v~České republice. Vizualizace bude zohledňovat územní členění státu na okresy a~časovou složku. Je zde popsáno samotné onemocnění COVID-19 společně s~existujícími aplikacemi a~také data, která byla využita. Součástí práce je popis implementace webové aplikace sloužící k~vizualizaci covidových dat. Základem implementace je webový framework Django společně se skriptovacími jazyky JavaScript a~Python. K~ukládání dat slouží databázový systém SQLite. Webové stránky na straně uživatele byly nastylovány pomocí značkovacího jazyka HTML s~CSS. Výsledkem této práce je webová aplikace, která je schopna vizualizovat dostupná covidová data MZČR na interaktivní mapě s~širokou škálou přizpůsobení dat a~vzhledu.
+
+}
+
+\CzechKeywords{COVID-19; webová aplikace; Django; MZČR; Python; JavaScript; vizualizace}
+
+\EnglishAbstract{
+The bachelor thesis deals with the development of an application for data visualization of COVID-19 disease in the Czech Republic. The visualization will take into account the territorial division of the state into districts and time component. The COVID-19 disease itself is described along with existing applications and also the data that was used. The work includes the implementation of a~web application used to visualize the COVID-19 data. The implementation is based on the web framework Django together with scripting languages Python and JavaScript. SQLite database system is used to store the data. User side web pages were styled using HTML markup language along with CSS. The result of this work is a~web application that is able to visualize the available COVID-19 data of the MZČR on an interactive map with a~wide range of data and graphical customization.
+}
+
+\EnglishKeywords{COVID-19; web application; Django; MZČR; Python; JavaScript; vizualization}
+
+
+\AddAcronym{API}{Application Programming Interface}
+\AddAcronym{covid-19}{Coronavirus Disease 2019}
+\AddAcronym{CPU}{Central Processing Unit}
+\AddAcronym{CSS}{Cascading Style Sheets}
+\AddAcronym{CSV}{Comma-Separated Values}
+\AddAcronym{ČR}{Česká republika}
+\AddAcronym{ČSÚ}{Český statistický úřad}
+\AddAcronym{ČVUT}{České vysoké učení technické v~Praze}
+\AddAcronym{DBMS}{Database Management System}
+\AddAcronym{DPI}{dots per inch}
+\AddAcronym{DRF}{Django REST Framework}
+\AddAcronym{ECDC}{European Centre for Disease Prevention and Control}
+\AddAcronym{EU}{Evropská unie}
+\AddAcronym{EUROSTAT}{European statistics}
+\AddAcronym{GPX}{GPS Exchange Format}
+\AddAcronym{GUI}{Graphic User Interface}
+\AddAcronym{HTML}{Hypertext Markup Language}
+\AddAcronym{HTTP}{Hypertext Transfer Protocol}
+\AddAcronym{I/O}{Input/Output}
+\AddAcronym{ID}{identifikace}
+\AddAcronym{IP}{Internet Protocol}
+\AddAcronym{IT}{informační technologie}
+\AddAcronym{JSON}{JavaScript Object Notation}
+\AddAcronym{KHS}{Krajská hygienická stanice}
+\AddAcronym{KML}{Keyhole Markup Language}
+\AddAcronym{LAU}{Local Administrative Unit}
+\AddAcronym{MB}{megabyte}
+\AddAcronym{MDL}{Material Design Lite}
+\AddAcronym{MVC}{Model-View-Controller}
+\AddAcronym{MTV}{Model-Template-View}
+\AddAcronym{MZČR}{Ministerstvo zdravotnictví České republiky}
+\AddAcronym{NUTS}{Nomenklatura územních statistických jednotek}
+\AddAcronym{NVMe}{Non-volatile memory express}
+\AddAcronym{OECD}{Organisation for Economic Co-operation and Development}
+\AddAcronym{ORP}{obec s~rozšířenou působností}
+\AddAcronym{OS}{operační systém}
+\AddAcronym{OSN}{Organizace spojených národů}
+\AddAcronym{PCR}{polymerase chain reaction}
+\AddAcronym{PiP}{Picture-in-Picture}
+\AddAcronym{RAM}{Random Access Memory}
+\AddAcronym{SQL}{Structured Query Language}
+\AddAcronym{URL}{Uniform Resource Locator}
+\AddAcronym{WHO}{World Health Organization}
+\AddAcronym{XML}{Extensible Markup Language}
+\AddAcronym{ÚZIS}{Ústav zdravotnických informací a~statistiky}
+
+\addbibresource{vlastni_citace.bib}
+
+% Novy druh tabulkoveho sloupce, ve kterem jsou cisla zarovnana podle desetinne carky
+\newcolumntype{d}[1]{D{,}{,}{#1}}
+
+% Zacatek dokumentu
+\begin{document}
+
+% Nechame vysazet titulni strany.
+\MakeTitlePages
+
+% Jsou v praci obrazky? Pokud ano vysazime jejich seznam a odstrankujeme.
+% Pokud ne smazeme nasledujici dve makra.
+\listoffigures
+\clearpage
+
+%\lstlistoflistings
+\clearpage
+\addcontentsline{toc}{chapter}{\lstlistlistingname}{\lstlistoflistings}
+
+% A nasleduje text zaverecne prace.
+\input{Chapters/Introduction.tex}
+\input{Chapters/Chapter1.tex}
+\input{Chapters/Chapter2.tex}
+\input{Chapters/Chapter3.tex}
+
+\input{Chapters/Conclusion.tex}
+
+% Seznam literatury
+\printbibliography[nottype=book, title={Literatura}, heading=bibintoc]
+
+\printbibliography[type=book, title={Bibliografie}, heading=bibintoc]
+
+% Prilohy
+\appendix
+\input{Chapters/Appendix0.tex}
+\input{Chapters/Appendix1.tex}
+\input{Chapters/Appendix2.tex}
+\input{Chapters/Appendix3.tex}
+\input{Chapters/Appendix4.tex}
+\input{Chapters/Appendix5.tex}
+
+\end{document}

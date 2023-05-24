@@ -1,0 +1,35 @@
+\chapter{Instalace a vytvoření projektu Djanga}
+
+\begin{lstlisting}[style=bash,label=src:DjangoInstall,caption={Instalace a vytvoření projektu Djanga \cite{django-dokumentace}}]
+# Zjištění verze Pythonu a instalace Pythonu verze 3.11 v Linuxu
+$ python3 --version
+$ sudo apt-get install python3.11
+
+# Kontrola verze pip a instalace pip pro Python verze 3
+$ pip --version
+$ sudo apt-get install python3-pip
+
+# Inicializace virtuálního prostředí 'my_venv' v současném adresáři
+$ python3 -m venv my_venv
+
+# Spuštění prostředí v systémech Linux/macOS
+$ source my_venv/bin/activate
+
+# Spuštění prostředí v systémech Windows
+$ my_venv\Scripts\activate.bat
+
+# Kontrola verze Djanga a instalace Djanga v Pythonu 3
+$ python3 -m django --version
+$ python3 -m pip install Django
+
+# Instalace apscheduler v Pythonu 3
+$ python3 -m pip install apscheduler
+
+
+
+# Vytvoření nového projektu 'bp_project' v současném adresáři a vytvoření aplikace 'covid' v adresáři projektu
+$ django-admin startproject bp_project
+$ cd bp_project && python3 manage.py startapp covid
+\end{lstlisting}
+
+\endinput
